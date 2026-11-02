@@ -41,3 +41,10 @@ Hầm được dựng bằng phối cảnh 3D dạng ống tròn hữu hạn, c�
 - Cánh cửa chỉ là điểm sáng nhỏ ở xa; hiện hình và lớn dần khi gần cuối hầm.
 - Pháo hoa nhiều tầng với các kiểu vòng tròn, chùm nở, tim và chùm vàng rủ; nhiều màu, vệt sáng, phạm vi rộng.
 - Pháo giấy bắn từ hai bên và tiếp tục rơi; hỗ trợ chế độ giảm chuyển động.
+
+## Cập nhật V2.3 — vũ trụ và lời ước
+- Ảnh nền tinh vân tạo mới bằng ImageGen, phối hợp đường hầm kính trong suốt. Xem assets/README.md để biết prompt và nguồn ảnh.
+- Các hành tinh có bề mặt, vùng ngày/đêm, khí quyển và vành đai; sao nhiều lớp, mặt trăng, thiên thạch và sao băng chuyển động theo chiều sâu. Đây là khung cảnh điện ảnh minh họa, không phải bản đồ thiên văn.
+- Nút Viết điều ước trước khi thổi nến, có gợi ý và nội dung tùy nhập (tối đa 180 ký tự). Điều ước hiện lại ở màn pháo hoa.
+- Điều ước chỉ nằm trong bộ nhớ phiên xem; không dùng localStorage, không gửi API hay lưu lên máy chủ. Tải lại trang sẽ xóa điều ước.
+- Khi deploy, cần tải cả thư mục assets cùng mã nguồn. File HTML gộp hue-birthday-v2-preview.html đã nhúng ảnh nền để mở riêng được.

@@ -136,6 +136,25 @@ letter.addEventListener('close',()=>$('read-letter').focus());
 letter.addEventListener('click',e=>{if(e.target===letter){const r=letter.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)letter.close();}});
 $('more-fireworks').addEventListener('click',()=>{launchConfetti();for(let i=0;i<4;i++)setTimeout(()=>{if(scene==='finale')launchFirework(width*(.15+i*.23),height*(.14+Math.random()*.22));},i*240);playChime();});
 
+let birthdayWish='',wishOpener=null,wishToastTimer;
+const wishDialog=$('wish-dialog');
+const wishSuggestions={peace:'Mong tuổi mới có thật nhiều bình yên, được yêu thương và luôn dịu dàng với chính mình.',courage:'Mong mình đủ can đảm theo đuổi điều mình thích, tin vào bản thân và không bỏ quên những ước mơ.',joy:'Mong tuổi mới có nhiều ngày thật vui, những người thật lòng và những điều nhỏ xinh khiến mình mỉm cười.'};
+function showWish(){wishOpener=document.activeElement;$('wish-input').value=birthdayWish;wishDialog.showModal();$('wish-input').focus();}
+$('wish-launch').addEventListener('click',showWish);
+$('close-wish').addEventListener('click',()=>wishDialog.close());
+wishDialog.addEventListener('close',()=>wishOpener?.focus({preventScroll:true}));
+wishDialog.addEventListener('click',event=>{if(event.target===wishDialog){const r=wishDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)wishDialog.close();}});
+document.querySelectorAll('[data-wish]').forEach(button=>button.addEventListener('click',()=>{$('wish-input').value=wishSuggestions[button.dataset.wish];$('wish-input').focus();}));
+function presentWish(){
+  const hasWish=Boolean(birthdayWish);$('finale-wish').hidden=!hasWish;$('finale-wish-text').textContent=birthdayWish;document.querySelector('.finale-content').classList.toggle('has-wish',hasWish);
+  $('wish-launch').innerHTML=hasWish?'Điều ước đã sẵn sàng <span>♡</span>':'Viết điều ước <span>✧</span>';
+}
+$('wish-form').addEventListener('submit',event=>{
+  event.preventDefault();birthdayWish=$('wish-input').value.trim().slice(0,180);presentWish();wishDialog.close();playChime();
+  clearTimeout(wishToastTimer);$('wish-status').textContent=birthdayWish?'Đã giữ điều ước cho cậu. Giờ mình thổi nến nhé! ♡':'Cậu cũng có thể giữ điều ước trong lòng nhé. ♡';$('wish-status').classList.add('visible');wishToastTimer=setTimeout(()=>$('wish-status').classList.remove('visible'),4200);
+});
+presentWish();
+
 // Original, softly synthesized music. No autoplay, downloads or microphone permission.
 const melody=[72,76,79,83,81,79,76,null,69,72,76,79,77,76,72,null,67,71,74,79,83,81,79,null,65,69,72,77,76,74,72,null];
 function tone(note,duration=1.6,gain=.035,type='sine'){
@@ -201,6 +220,77 @@ function makeMemory(index){
   c.restore();c.fillStyle='#715966';c.font='21px Georgia';c.fillText(chapters[index].label,35,435);c.fillStyle='#a28189';c.font='14px Arial';c.textAlign='right';c.fillText(chapters[index].year,682,435);c.textAlign='left';return surface;
 }
 const memoryArt=chapters.map((_,i)=>makeMemory(i));
+// An AI-created nebula panorama combined with locally rendered, shaded planets.
+const nebulaImage=new Image();nebulaImage.src='assets/cosmic-nebula.png';
+function noiseHash(x,y,seed){let h=Math.imul(x^seed,374761393)^Math.imul(y,668265263);h=Math.imul(h^(h>>>13),1274126177);return (h>>>0)/4294967295;}
+function spaceNoise(x,y,seed){const ix=Math.floor(x),iy=Math.floor(y);let fx=x-ix,fy=y-iy;fx=fx*fx*(3-2*fx);fy=fy*fy*(3-2*fy);const a=noiseHash(ix,iy,seed),b=noiseHash(ix+1,iy,seed),c=noiseHash(ix,iy+1,seed),d=noiseHash(ix+1,iy+1,seed);return (a+(b-a)*fx)*(1-fy)+(c+(d-c)*fx)*fy;}
+function spaceFbm(x,y,seed){let v=0,weight=.55;for(let i=0;i<4;i++){v+=spaceNoise(x,y,seed+i*19)*weight;x*=2.07;y*=2.07;weight*=.5;}return v;}
+function makePlanetTexture(size,type,seed){
+  const c=document.createElement('canvas');c.width=c.height=size;const g=c.getContext('2d'),pixels=g.createImageData(size,size),R=size*.47;
+  for(let y=0;y<size;y++)for(let x=0;x<size;x++){
+    const nx=(x-size/2)/R,ny=(y-size/2)/R,r2=nx*nx+ny*ny;if(r2>1)continue;
+    const nz=Math.sqrt(1-r2),u=.5+Math.atan2(nx,nz)/(2*Math.PI),v=.5+Math.asin(ny)/Math.PI;
+    const n=spaceFbm(u*7,v*7,seed);let rgb;
+    if(type==='earth'){
+      const land=spaceFbm(u*8+1,v*7,seed+53)>.49;
+      rgb=land?[58+n*38,84+n*46,48+n*20]:[9+n*12,40+n*35,77+n*65];
+      if(land&&Math.abs(ny)<.35&&n>.48)rgb=[121+n*38,111+n*36,66+n*22];
+      const cloud=spaceFbm(u*18,v*11,seed+145);if(cloud>.56){const a=Math.min(.88,(cloud-.56)*6);rgb=rgb.map(value=>value*(1-a)+228*a);}
+      if(Math.abs(ny)>.91)rgb=[201,217,217];
+    }else if(type==='gas'){
+      const bands=Math.sin(ny*48+n*9)*.5+.5;const wisps=spaceNoise(u*35,v*58,seed+21);
+      rgb=[132+bands*62+n*27,100+bands*51+n*21,74+bands*43+n*17];
+      const storm=Math.exp(-((nx-.26)**2/.08+(ny-.19)**2/.012));rgb=rgb.map((value,i)=>value-storm*(i===0?3:34));rgb=rgb.map(value=>value+wisps*9);
+    }else{
+      const terrain=spaceFbm(u*20,v*20,seed+3);const crater=spaceNoise(u*42,v*42,seed+74);
+      rgb=[83+n*87,76+n*79,75+n*72].map(value=>value*(crater>.7?.67:1)+(terrain-.5)*34);
+    }
+    const light=Math.max(0,nx*-.65+ny*-.44+nz*.62),shade=.035+Math.pow(light,.85)*.965;
+    const rim=type==='earth'?Math.pow(1-nz,3)*Math.max(.15,light)*.45:0;
+    const offset=(y*size+x)*4;
+    pixels.data[offset]=Math.min(255,rgb[0]*shade+rim*35);pixels.data[offset+1]=Math.min(255,rgb[1]*shade+rim*125);pixels.data[offset+2]=Math.min(255,rgb[2]*shade+rim*210);pixels.data[offset+3]=Math.min(255,(1-Math.sqrt(r2))*R*255);
+  }
+  g.putImageData(pixels,0,0);return c;
+}
+const spaceTextures={earth:makePlanetTexture(320,'earth',42),gas:makePlanetTexture(288,'gas',73),moon:makePlanetTexture(180,'rock',109),asteroid:makePlanetTexture(90,'rock',234)};
+const cosmicStars=Array.from({length:155},(_,i)=>({x:noiseHash(i,7,51),y:noiseHash(i,13,71),depth:.3+noiseHash(i,2,21)*2.2,size:.3+noiseHash(i,3,11)*1.2,phase:i*2.3,color:i%7===0?'#a9d9ff':i%5===0?'#ffdab4':'#e5e9ff'}));
+const asteroidField=Array.from({length:17},(_,i)=>({x:noiseHash(i,3,89),y:.13+noiseHash(i,11,32)*.46,size:4+noiseHash(i,8,54)*17,depth:.5+noiseHash(i,6,18),angle:i*1.94}));
+function drawNebula(progress){
+  if(!nebulaImage.complete||!nebulaImage.naturalWidth)return;
+  const scale=Math.max(width/nebulaImage.naturalWidth,height/nebulaImage.naturalHeight)*1.12;
+  const w=nebulaImage.naturalWidth*scale,h=nebulaImage.naturalHeight*scale;
+  const pan=width<701?.12+progress*.72:.32+progress*.28;
+  ctx.save();ctx.globalAlpha=.87;ctx.drawImage(nebulaImage,-(w-width)*pan,-(h-height)*(.35+progress*.25),w,h);ctx.restore();
+}
+function drawPlanet(texture,x,y,r,atmosphere=false){
+  ctx.save();
+  if(atmosphere){const glow=ctx.createRadialGradient(x,y,r*.8,x,y,r*1.19);glow.addColorStop(0,'#7aaeff00');glow.addColorStop(.55,'#73aaff35');glow.addColorStop(1,'#73aaff00');ctx.fillStyle=glow;ctx.fillRect(x-r*1.2,y-r*1.2,r*2.4,r*2.4);}
+  ctx.drawImage(texture,x-r*1.064,y-r*1.064,r*2.128,r*2.128);ctx.restore();
+}
+function drawPlanetRings(x,y,r,front){
+  ctx.save();ctx.translate(x,y);ctx.rotate(-.35);ctx.beginPath();ctx.rect(-r*2.6,front?0:-r*1.5,r*5.2,r*1.5);ctx.clip();
+  for(let i=0;i<25;i++){if(i===12||i===13)continue;const outer=r*(1.28+i*.035);ctx.beginPath();ctx.ellipse(0,0,outer,outer*.29,0,0,Math.PI*2);ctx.lineWidth=Math.max(.65,r*.025);ctx.strokeStyle=`rgba(${i%3===0?'185,151,116':'225,199,155'},${front?.48:.27})`;ctx.stroke();}
+  ctx.restore();
+}
+function drawCosmos(time,progress){
+  const moving=reduced?0:time;
+  // Stars at different depths move by different amounts as the traveler advances.
+  for(const s of cosmicStars){const x=((s.x*width-progress*38*s.depth)%width+width)%width,y=s.y*height+Math.sin(moving*.06+s.phase)*2;ctx.save();ctx.globalAlpha=.35+(Math.sin(moving*.45+s.phase)+1)*.2;ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(x,y,s.size*.7,0,Math.PI*2);ctx.fill();if(s.size>1.35)star(ctx,x,y,s.size*3,s.color);ctx.restore();}
+  const unit=Math.min(width,height),earthX=width*(.13-progress*.09),earthY=height*(.25+progress*.065),earthR=unit*(width<701?.115:.16);
+  drawPlanet(spaceTextures.earth,earthX,earthY,earthR,true);
+  const saturnX=width*(.88-progress*.035),saturnY=height*(.235+progress*.06),saturnR=unit*(width<701?.10:.105);
+  drawPlanetRings(saturnX,saturnY,saturnR,false);drawPlanet(spaceTextures.gas,saturnX,saturnY,saturnR);drawPlanetRings(saturnX,saturnY,saturnR,true);
+  drawPlanet(spaceTextures.moon,width*(.73-progress*.08),height*.59,unit*.038);
+  // Small rocks have shaded irregular terrain, slow tumble and their own parallax.
+  for(const rock of asteroidField){const x=((rock.x*width-progress*135*rock.depth)%width+width)%width,y=rock.y*height+Math.sin(moving*.09+rock.angle)*5;ctx.save();ctx.translate(x,y);ctx.rotate(rock.angle+moving*.025);ctx.globalAlpha=.55;ctx.drawImage(spaceTextures.asteroid,-rock.size,-rock.size*.83,rock.size*2,rock.size*1.66);ctx.restore();}
+  // Infrequent shooting stars cross behind the transparent tunnel shell.
+  if(!reduced)for(let i=0;i<3;i++){
+    const cycle=(moving+i*4.7)%(10+i*2),phase=cycle/.95;if(phase>1)continue;
+    const x=width*(-.12+phase*1.15),y=height*(.08+i*.11+phase*.22),length=(1-phase*.35)*unit*.23;
+    const trail=ctx.createLinearGradient(x-length,y-length*.3,x,y);trail.addColorStop(0,'#a8d9ff00');trail.addColorStop(.8,'#abd7ff99');trail.addColorStop(1,'#fff5df');ctx.beginPath();ctx.moveTo(x-length,y-length*.3);ctx.lineTo(x,y);ctx.strokeStyle=trail;ctx.lineWidth=1.8;ctx.stroke();ctx.save();ctx.shadowColor='#9ed1ff';ctx.shadowBlur=12;ellipse(ctx,x,y,2,2,'#f2f6ff');ctx.restore();
+  }
+}
+
 const stars=Array.from({length:220},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.2+.25,phase:Math.random()*7,z:Math.random()*1600}));
 function resize(){width=innerWidth;height=innerHeight;dpr=Math.min(devicePixelRatio||1,1.7);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx?.setTransform(dpr,0,0,dpr,0,0);}
 resize();window.addEventListener('resize',resize);
@@ -210,6 +300,7 @@ function drawBackground(t){
   else if(scene==='party'){bg.addColorStop(0,'#39233d');bg.addColorStop(.55,'#21172b');bg.addColorStop(1,'#100d1a');}
   else{bg.addColorStop(0,'#2b203c');bg.addColorStop(.55,'#191628');bg.addColorStop(1,'#0d0c17');}
   ctx.fillStyle=bg;ctx.fillRect(0,0,width,height);
+  if(scene==='journey')drawNebula(Math.min(1,elapsed/(CHAPTER_SECONDS*6)));
   for(const s of stars){const alpha=reduced?.5:.3+.35*(Math.sin(t*.4+s.phase)+1)/2;ctx.fillStyle=`rgba(233,210,229,${alpha})`;ctx.beginPath();ctx.arc(s.x*width,s.y*height,s.r,0,Math.PI*2);ctx.fill();}
   // Soft nebula clouds: no full-screen flashes.
   const cloud=ctx.createRadialGradient(width*.76,height*.43,0,width*.76,height*.43,width*.43);cloud.addColorStop(0,scene==='finale'?'#8c3d6c13':'#c27da518');cloud.addColorStop(1,'#a977c000');ctx.fillStyle=cloud;ctx.fillRect(0,0,width,height);
@@ -275,7 +366,7 @@ function drawTunnel(t){
     const a=i/slices*Math.PI*2,b=(i+1)/slices*Math.PI*2;
     const points=[view.project(Math.cos(a)*radius,Math.sin(a)*radius,near),view.project(Math.cos(b)*radius,Math.sin(b)*radius,near),view.project(Math.cos(b)*radius,Math.sin(b)*radius,far),view.project(Math.cos(a)*radius,Math.sin(a)*radius,far)];
     const light=Math.max(0,Math.sin(a))*.55+(Math.cos(a*2)+1)*.12;
-    ctx.beginPath();points.forEach((p,j)=>j?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=`rgb(${23+light*10},${20+light*8},${39+light*18})`;ctx.fill();
+    ctx.beginPath();points.forEach((p,j)=>j?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=`rgba(${23+light*10},${20+light*8},${39+light*18},.24)`;ctx.fill();
   }
   // The end is visible from the entrance and grows as Huệ approaches it.
   const end=view.project(0,0,far),reveal=.12+.88*Math.pow(progress,3),endRadius=radius*end.k*reveal;
@@ -415,7 +506,7 @@ function frame(now){
   if(scene==='journey'&&!paused){elapsed+=dt;if(elapsed>=chapters.length*CHAPTER_SECONDS)setScene('door');else updateChapter();}
   if(scene==='journey')$('timeline-fill').style.width=`${Math.min(100,elapsed/(CHAPTER_SECONDS*6)*100)}%`;
   if(scene==='party'&&!blown){holdProgress=held?Math.min(1,holdBase+(now-holdStarted)/3200):Math.max(0,holdProgress-dt*.45);updateHoldUI();if(holdProgress>=1)extinguish();}
-  if(ctx){drawBackground(now/1000);if(scene==='journey')drawTunnel(now/1000);else drawAmbient(now/1000);if(scene==='finale')drawFireworks(dt);}
+  if(ctx){drawBackground(now/1000);if(scene==='journey'){drawCosmos(elapsed,Math.min(1,elapsed/(CHAPTER_SECONDS*6)));drawTunnel(now/1000);}else drawAmbient(now/1000);if(scene==='finale')drawFireworks(dt);}
   renderFrame=requestAnimationFrame(frame);
 }
 renderFrame=requestAnimationFrame(frame);
