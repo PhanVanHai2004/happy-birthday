@@ -32,3 +32,6 @@ Bản V1 vẫn được lưu riêng ở ../hue-birthday-v1 và ../hue-birthday-v
 Để thay trang chủ bằng V2: tải index.html, styles.css, script.js và .nojekyll vào gốc repository, ghi đè các file cùng tên. Mã V1 cục bộ vẫn giữ nguyên.
 
 Mã V2 đã được đưa vào thư mục v2 trong repository. GitHub Pages tự triển khai khi nhánh main thay đổi. Trạng thái triển khai cần được kiểm tra trên trang Actions hoặc bằng cách mở link V2.
+
+## Cập nhật V2.1 — đường hầm tròn
+Hầm được dựng bằng phối cảnh 3D dạng ống tròn hữu hạn, có lối đi giữa hầm và cửa cuối hầm. Nhân vật nhìn từ phía sau, tiến dọc hầm. Sáu cảnh được gắn cố định lên hai thành hầm theo thứ tự năm, có phối cảnh và lần lượt đi qua khi camera theo nhân vật. Thanh hành trình hiện tiến độ từ lối vào đến cuối hầm.

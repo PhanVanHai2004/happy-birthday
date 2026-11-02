@@ -21,6 +21,9 @@ const ctx=canvas.getContext('2d');
 const avatarMarkup=`<svg viewBox="0 0 220 350" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="dress" x2=".5" y2="1"><stop stop-color="#e3a6bd"/><stop offset="1" stop-color="#ae6c96"/></linearGradient></defs><g class="hair-tail"><path d="M63 78Q35 130 54 206l20 20 6-92h70l8 93 24-22q18-78-9-126z" fill="#392c3e"/><path d="M65 130q-20 45-6 78m102-80q20 40 9 75" fill="none" stroke="#594153" stroke-width="5"/></g><g class="leg-left"><path d="M85 244l-2 62q4 10 15 1l9-62" fill="#f2cdbb"/><path d="m82 295-5 20q-2 10 25 6l2-20" fill="#eee3de" stroke="#ccb8bd" stroke-width="2"/><path d="M77 317h25" stroke="#8f6f85" stroke-width="3"/></g><g class="leg-right"><path d="M116 244l6 62q6 9 16 0l-1-63" fill="#f2cdbb"/><path d="m121 299-1 21q25 7 26-2l-8-21" fill="#eee3de" stroke="#ccb8bd" stroke-width="2"/><path d="m121 320 24 1" stroke="#8f6f85" stroke-width="3"/></g><path d="M99 134v18h25v-18" fill="#eac0ad"/><g class="arm-left"><path d="M79 154q-14 8-18 44l3 32q5 11 13 0l1-28 15-35" fill="#f2cdbb" stroke="#d7a394" stroke-width="1"/><path d="m80 151-14 19 15 13 14-20" fill="#cf93ad"/></g><path d="M83 149q26 17 53 0l15 36-5 17 16 51q-49 26-99 0l17-53-7-17z" fill="url(#dress)" stroke="#b77d9c" stroke-width="1.5"/><path d="M96 149q13 19 28 0" fill="none" stroke="#f8d8de" stroke-width="6"/><path d="M84 199q25 9 61 0" fill="none" stroke="#f6c4cf" stroke-width="5"/><path d="m112 200-11 11 12-5 10 7-2-14" fill="#f3c5d1"/><path d="m83 244 5-30m45 31-5-31m-18 35v-31" stroke="#e8b1c6" stroke-width="2" opacity=".6"/><g class="arm-right"><path d="m137 157 18 38 10-16 6 2q5 2 4 8l-13 29q-7 10-13-2l-23-43" fill="#f2cdbb" stroke="#d7a394" stroke-width="1"/><path d="m139 150 15 19-15 13-13-20" fill="#cf93ad"/></g><ellipse cx="109" cy="94" rx="50" ry="52" fill="#f4d0be"/><ellipse cx="58" cy="103" rx="7" ry="11" fill="#e9bba9"/><ellipse cx="160" cy="103" rx="7" ry="11" fill="#e9bba9"/><path d="M57 94q-9-63 54-65 59 0 52 68-20-4-35-31-15 24-60 20l-8 24z" fill="#3f3043"/><path d="M65 67q29-35 66-21" fill="none" stroke="#624658" stroke-width="5" stroke-linecap="round"/><g class="eye-shine"><ellipse cx="89" cy="103" rx="5" ry="7" fill="#483346"/><ellipse cx="131" cy="103" rx="5" ry="7" fill="#483346"/><circle cx="90" cy="101" r="1.7" fill="#fff7ed"/><circle cx="132" cy="101" r="1.7" fill="#fff7ed"/></g><ellipse cx="75" cy="118" rx="8" ry="4" fill="#e9a4ac" opacity=".65"/><ellipse cx="144" cy="118" rx="8" ry="4" fill="#e9a4ac" opacity=".65"/><path d="M102 123q8 8 16 0" fill="none" stroke="#b66c7e" stroke-width="2.5" stroke-linecap="round"/><g transform="translate(150 67) rotate(20)"><path d="M0 0Q-25-24-21 2-19 17 0 6Q26 24 22-2 20-16 0 0" fill="#dba3bd"/><ellipse cx="0" cy="3" rx="5" ry="6" fill="#efd1d7"/></g></svg>`;
 document.querySelectorAll('[data-avatar]').forEach((el,index)=>{el.innerHTML=avatarMarkup.replaceAll('id="dress"',`id="dress-${index}"`).replaceAll('url(#dress)',`url(#dress-${index})`);});
 
+// During the journey the same girl is seen from behind, walking into the tube.
+document.querySelector('.travel-avatar').innerHTML=`<svg viewBox="0 0 220 350" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="back-dress" x2="1" y2="1"><stop stop-color="#e3a5c0"/><stop offset="1" stop-color="#a96791"/></linearGradient></defs><g class="leg-left"><path d="M86 240l-3 65q6 10 16 0l7-65" fill="#ebc5b6"/><path d="m82 298-4 18q-1 9 24 5l1-20" fill="#ede3e1" stroke="#a98ba4" stroke-width="2"/></g><g class="leg-right"><path d="M117 240l5 65q7 9 16-1l-2-65" fill="#ebc5b6"/><path d="m121 300-1 21q26 6 25-4l-8-19" fill="#ede3e1" stroke="#a98ba4" stroke-width="2"/></g><g class="arm-left"><path d="m80 153-13 40-1 36q5 12 13 0l1-30 16-35" fill="#efc9b8"/><path d="m81 150-15 21 17 12 14-24" fill="#cd91ac"/></g><g class="arm-right"><path d="m138 153 15 40 2 37q-5 11-13 0l-2-31-17-35" fill="#efc9b8"/><path d="m137 150 16 21-17 12-14-24" fill="#cd91ac"/></g><path d="M82 147q28-12 55 0l13 37-5 17 18 53q-52 27-102 0l18-54-7-16z" fill="url(#back-dress)" stroke="#af7092" stroke-width="1.5"/><path d="M80 199q31 9 66 0" stroke="#f2c3d6" stroke-width="5" fill="none"/><path d="M111 183v66" stroke="#edb8ce" stroke-width="1.5"/><path d="m111 200-17 10 18-3 15 9-4-17" fill="#f4c5d7"/><path d="M57 91Q46 33 109 29q64-2 56 65l8 80q-18 19-46 10l-7-37-7 39q-40 11-64-13z" fill="#3c2c40" stroke="#76506c" stroke-width="1"/><path d="M72 77q-10 56-4 89m23-116q-6 72-1 116m43-117q17 65 10 119m-32-118 2 105" fill="none" stroke="#61435a" stroke-width="3" opacity=".8"/><g transform="translate(144 71) rotate(13)"><path d="M0 0Q-25-22-21 3-17 17 0 7Q26 24 22-1 19-15 0 0" fill="#e6b0c9"/><ellipse cx="0" cy="4" rx="5" ry="6" fill="#f6d2df"/><path d="m-4 7-7 22 11-9 10 9-4-23" fill="#dba0bf"/></g></svg>`;
+
 const candlePositions=[[145,103],[177,87],[210,81],[243,87],[275,103]];
 const candles=candlePositions.map(([x,y],i)=>`<g transform="translate(${x} ${y})"><rect x="-4" y="-37" width="8" height="43" rx="3" fill="${i%2?'#b8c6a9':'#e4adc4'}"/><path d="m-3-27 6-4m-6 17 6-4m-6 17 6-4" stroke="#fff3e2" stroke-width="2"/><path d="M0-37v-7" stroke="#6b5260" stroke-width="1.5"/><g class="candle-flame"><g class="flame-dance" style="animation-delay:-${i*.14}s"><ellipse cy="-53" rx="10" ry="14" fill="#f4bf7e" opacity=".1"/><path d="M0-67C-17-47-7-41 0-44 9-42 14-51 0-67" fill="#edb56e"/><path d="M0-58C-7-48-4-44 0-45 5-44 6-49 0-58" fill="#fff4bd"/></g></g><path class="candle-smoke" d="M0-42q-8-8 0-14t0-13"/></g>`).join('');
 $('cake-art').innerHTML=`<svg viewBox="0 0 420 300" role="img" aria-label="Bánh sinh nhật hai tầng với năm ngọn nến đang cháy"><defs><linearGradient id="lower-cake" x2="0" y2="1"><stop stop-color="#cb91ae"/><stop offset="1" stop-color="#925a83"/></linearGradient><linearGradient id="upper-cake" x2="0" y2="1"><stop stop-color="#f0c4d2"/><stop offset="1" stop-color="#c88fae"/></linearGradient></defs><ellipse cx="210" cy="258" rx="158" ry="20" fill="#7d617d" opacity=".3"/><ellipse cx="210" cy="247" rx="151" ry="23" fill="#e4c8c4"/><ellipse cx="210" cy="243" rx="139" ry="17" fill="#cbb0b7"/><path d="M85 168v62c0 35 250 35 250 0v-62" fill="url(#lower-cake)" stroke="#b6809f"/><ellipse cx="210" cy="169" rx="125" ry="32" fill="#eed3d4"/><path d="M85 168v14q6 16 17 2 10 14 19 2 10 14 20 2 10 14 20 2 10 14 20 2 10 14 20 2 10 14 20 0 10 14 20-1 10 14 20-2 10 14 20-2 10 14 20-2 10 10 14-6v-10" fill="#f5ded7"/><path d="M119 109v57c0 28 182 28 182 0v-57" fill="url(#upper-cake)" stroke="#d5a6b9"/><path d="M119 110v17c0 16 14 17 16 2 2-8 12-8 13 2v9c0 16 17 16 18 0 1-10 13-11 14 0v7c0 16 18 16 18 0v-9c0-11 15-11 16 0v6c0 16 18 16 18-1 0-10 15-13 16-2 1 16 17 13 17-2v-10c1-10 12-12 14-1 4 14 22 13 22-3v-15" fill="#fff0db"/><ellipse cx="210" cy="109" rx="91" ry="28" fill="#fff1df"/><ellipse cx="210" cy="109" rx="72" ry="18" fill="none" stroke="#e6c7c1" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/>${candles}<path d="M99 227q10 14 20 0 10 14 20 0 10 14 20 0 10 14 20 0 10 14 20 0 10 14 20 0 10 14 20 0 10 14 20 0 10 14 20 0 10 14 20 0 10 14 20 0" fill="none" stroke="#f4d9d9" stroke-width="4"/><text x="210" y="221" fill="#f8dce5" text-anchor="middle" font-family="Georgia" font-size="23" font-style="italic">Huệ</text><g fill="#e6c8a1"><circle cx="140" cy="161" r="2"/><circle cx="164" cy="169" r="2"/><circle cx="187" cy="172" r="2"/><circle cx="211" cy="173" r="2"/><circle cx="236" cy="172" r="2"/><circle cx="260" cy="169" r="2"/><circle cx="282" cy="161" r="2"/></g></svg>`;
@@ -169,27 +172,118 @@ function drawBackground(t){
   // Soft nebula clouds: no full-screen flashes.
   const cloud=ctx.createRadialGradient(width*.76,height*.43,0,width*.76,height*.43,width*.43);cloud.addColorStop(0,scene==='finale'?'#8c3d6c13':'#c27da518');cloud.addColorStop(1,'#a977c000');ctx.fillStyle=cloud;ctx.fillRect(0,0,width,height);
 }
-function drawTunnel(t){
-  const mobile=width<701,cx=width*(mobile?.5:.57),cy=height*(mobile?.37:.43),depthMotion=reduced?activeChapter*170:elapsed*65;
-  ctx.save();
-  for(let i=24;i>=0;i--){let z=((i*110-depthMotion)%2750+2750)%2750+55;let perspective=700/(z+120),rx=width*.49*perspective,ry=height*.49*perspective;
-    ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,Math.sin(i*.3)*.018,0,Math.PI*2);ctx.strokeStyle=`rgba(${i%3===0?'225,175,202':'142,126,187'},${Math.min(.28,perspective*.13)})`;ctx.lineWidth=perspective*.8+.3;ctx.stroke();
-    if(i%3===0){ctx.beginPath();ctx.ellipse(cx,cy,rx*.994,ry*.994,0,0,Math.PI*2);ctx.strokeStyle='#f4c49c10';ctx.lineWidth=3*perspective;ctx.stroke();}
+// Pinhole projection inside a finite circular cylinder. Memories stay fixed on
+// the walls in world space; the camera and the rear-facing traveler advance.
+function tunnelView(){
+  const mobile=width<701;
+  const progress=Math.min(1,Math.max(0,elapsed/(CHAPTER_SECONDS*6)));
+  const view={mobile,progress,camera:progress*4700,cx:width*.5,cy:height*(mobile?.365:.405),focal:mobile?width*1.12:Math.min(width*.7,height*.96),radius:340};
+  view.project=(x,y,z)=>{const d=z-view.camera;const k=view.focal/Math.max(35,d);return{x:view.cx+x*k,y:view.cy+y*k,k,d};};
+  return view;
+}
+function texturedTriangle(image,source,destination){
+  const [a,b,c]=source,[p,q,r]=destination;
+  const det=a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y);
+  if(Math.abs(det)<.00001)return;
+  const transform=key=>[
+    (p[key]*(b.y-c.y)+q[key]*(c.y-a.y)+r[key]*(a.y-b.y))/det,
+    (p[key]*(c.x-b.x)+q[key]*(a.x-c.x)+r[key]*(b.x-a.x))/det,
+    (p[key]*(b.x*c.y-c.x*b.y)+q[key]*(c.x*a.y-a.x*c.y)+r[key]*(a.x*b.y-b.x*a.y))/det
+  ];
+  const x=transform('x'),y=transform('y');
+  ctx.save();ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.lineTo(r.x,r.y);ctx.closePath();ctx.clip();ctx.transform(x[0],y[0],x[1],y[1],x[2],y[2]);ctx.drawImage(image,0,0);ctx.restore();
+}
+function drawWallMemory(view,index){
+  const centerZ=850+index*780;
+  const relative=centerZ-view.camera;
+  if(relative<310||relative>5900)return;
+  const side=index%2===0?-1:1;
+  const wallX=side*view.radius*.89;
+  const depth=590,halfHeight=128,centerY=5;
+  // A flat framed picture lies along the side wall, so its nearer edge is
+  // larger and farther from the vanishing point than its far edge.
+  const zAt=u=>centerZ+(side<0?u-.5:.5-u)*depth;
+  const corners=[view.project(wallX,centerY-halfHeight,zAt(0)),view.project(wallX,centerY-halfHeight,zAt(1)),view.project(wallX,centerY+halfHeight,zAt(1)),view.project(wallX,centerY+halfHeight,zAt(0))];
+  const opacity=Math.min(1,(relative-310)/120,Math.max(.22,1-(relative-600)/6500));
+  ctx.save();ctx.globalAlpha=opacity;
+  ctx.beginPath();corners.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle='#f2d8d7';ctx.shadowColor=index===activeChapter?'#e6b6ca88':'#b2a0d333';ctx.shadowBlur=index===activeChapter?20:8;ctx.fill();ctx.shadowBlur=0;
+  const image=memoryArt[index],strips=12;
+  for(let j=0;j<strips;j++){
+    const u0=j/strips,u1=(j+1)/strips;
+    const top0=view.project(wallX,centerY-halfHeight,zAt(u0)),top1=view.project(wallX,centerY-halfHeight,zAt(u1));
+    const bottom0=view.project(wallX,centerY+halfHeight,zAt(u0)),bottom1=view.project(wallX,centerY+halfHeight,zAt(u1));
+    const sx0=u0*image.width,sx1=u1*image.width;
+    texturedTriangle(image,[{x:sx0,y:0},{x:sx1,y:0},{x:sx1,y:image.height}],[top0,top1,bottom1]);
+    texturedTriangle(image,[{x:sx0,y:0},{x:sx1,y:image.height},{x:sx0,y:image.height}],[top0,bottom1,bottom0]);
   }
-  // Vanishing-point floor rails.
-  for(let i=-6;i<=6;i++){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+i*width*.17,height+50);ctx.strokeStyle='#c294b213';ctx.lineWidth=1;ctx.stroke();}
-  for(let i=0;i<50;i++){const s=stars[i],z=((s.z-depthMotion*.5)%1600+1600)%1600+120,k=500/z,x=cx+(s.x-.5)*width*k,y=cy+(s.y-.5)*height*k;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+(x-cx)*.012,y+(y-cy)*.012);ctx.strokeStyle='#efccdc55';ctx.lineWidth=.8;ctx.stroke();}
-  const fraction=(elapsed%CHAPTER_SECONDS)/CHAPTER_SECONDS;
-  const pictureWidth=mobile?Math.min(width*.72,310):Math.min(width*.29,440),pictureHeight=pictureWidth*490/720;
-  const fade=paused?1:Math.min(1,fraction*6+.65,(1-fraction)*6+.65);
-  const x=mobile?width*.5:width*.785,y=mobile?height*.32:height*.43;
-  ctx.save();ctx.translate(x,y);ctx.rotate((mobile?-.035:.055)+Math.sin(t*.3)*.007);const scale=.92+fraction*.1;ctx.scale(scale,scale);ctx.globalAlpha=fade;
-  ctx.shadowColor='#d8a5c03b';ctx.shadowBlur=30;ctx.drawImage(memoryArt[Math.max(0,activeChapter)],-pictureWidth/2,-pictureHeight/2,pictureWidth,pictureHeight);ctx.shadowBlur=0;
-  ctx.restore();
-  // Distant memories give the tunnel depth before they become the current scene.
-  if(activeChapter<5&&!mobile){ctx.save();ctx.globalAlpha=.22;let w=pictureWidth*.32;ctx.translate(cx+width*.14,cy-height*.19);ctx.rotate(-.08);ctx.drawImage(memoryArt[activeChapter+1],-w/2,-w*.34,w,w*490/720);ctx.restore();}
+  ctx.beginPath();corners.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.strokeStyle=index===activeChapter?'#fff0d6':'#c5a9c6';ctx.lineWidth=index===activeChapter?2:1;ctx.stroke();
+  const label=view.project(side*view.radius*.88,centerY+halfHeight+32,centerZ);
+  ctx.fillStyle='#ead1cc';ctx.font=`${Math.max(7,Math.min(16,19*label.k))}px Georgia`;ctx.textAlign='center';ctx.fillText(chapters[index].year,label.x,label.y);ctx.restore();
+}
+function drawTunnel(t){
+  const view=tunnelView();
+  const {camera,cx,cy,focal,radius,progress,mobile}=view;
+  ctx.save();
+  // A physical tube: equal X/Y radius, shaded curved walls, circular ribs,
+  // longitudinal seams, and a walkway cut across the bottom of the cylinder.
+  const far=5500;
+  const near=camera+125;
+  const slices=56;
+  for(let i=0;i<slices;i++){
+    const a=i/slices*Math.PI*2,b=(i+1)/slices*Math.PI*2;
+    const points=[view.project(Math.cos(a)*radius,Math.sin(a)*radius,near),view.project(Math.cos(b)*radius,Math.sin(b)*radius,near),view.project(Math.cos(b)*radius,Math.sin(b)*radius,far),view.project(Math.cos(a)*radius,Math.sin(a)*radius,far)];
+    const light=Math.max(0,Math.sin(a))*.55+(Math.cos(a*2)+1)*.12;
+    ctx.beginPath();points.forEach((p,j)=>j?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=`rgb(${23+light*10},${20+light*8},${39+light*18})`;ctx.fill();
+  }
+  // The end is visible from the entrance and grows as Huệ approaches it.
+  const end=view.project(0,0,far),endRadius=radius*end.k;
+  const exitGlow=ctx.createRadialGradient(cx,cy,0,cx,cy,endRadius*1.7);
+  exitGlow.addColorStop(0,'#f6d5bd45');exitGlow.addColorStop(.45,'#c68ea441');exitGlow.addColorStop(1,'#b88ab400');ctx.fillStyle=exitGlow;ctx.fillRect(cx-endRadius*1.7,cy-endRadius*1.7,endRadius*3.4,endRadius*3.4);
+  ctx.beginPath();ctx.arc(cx,cy,endRadius,0,Math.PI*2);ctx.fillStyle='#443345';ctx.fill();ctx.strokeStyle='#edc7b7';ctx.lineWidth=2;ctx.stroke();
+  const doorW=radius*.35*end.k,doorH=radius*.85*end.k;
+  rounded(ctx,cx-doorW/2,cy+radius*.67*end.k-doorH,doorW,doorH,[doorW/2,doorW/2,0,0],'#b9909644','#eac4b4');
+  line(ctx,[[cx,cy+radius*.67*end.k-doorH],[cx,cy+radius*.67*end.k]],'#e5b9b7',Math.max(.5,end.k));
+  if(endRadius>35){ctx.fillStyle='#e8c0ae';ctx.textAlign='center';ctx.font=`${Math.max(7,10*end.k)}px Arial`;ctx.fillText('2026',cx,cy-endRadius*.58);}
+  // Finite, fixed ribs (no recycled ring animation).
+  for(let z=far;z>camera+150;z-=260){
+    const ring=view.project(0,0,z),r=radius*ring.k;
+    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle=`rgba(172,141,187,${Math.min(.43,.13+ring.k*.08)})`;ctx.lineWidth=Math.min(4,ring.k*1.4);ctx.stroke();
+    ctx.beginPath();ctx.arc(cx,cy,r+3*ring.k,0,Math.PI*2);ctx.strokeStyle='#e7c4d01b';ctx.lineWidth=Math.max(.5,ring.k*.5);ctx.stroke();
+    for(const angle of [Math.PI*.15,Math.PI*.85,Math.PI*1.15,Math.PI*1.85]){
+      const p=view.project(Math.cos(angle)*radius*.98,Math.sin(angle)*radius*.98,z);
+      ctx.save();ctx.shadowColor='#efc39e';ctx.shadowBlur=Math.min(12,p.k*5);ellipse(ctx,p.x,p.y,Math.max(.6,2*p.k),Math.max(.6,2*p.k),'#edc0a1');ctx.restore();
+    }
+  }
+  for(let a=0;a<Math.PI*2;a+=Math.PI/8){
+    const p=view.project(Math.cos(a)*radius,Math.sin(a)*radius,near),q=view.project(Math.cos(a)*radius,Math.sin(a)*radius,far);
+    line(ctx,[[p.x,p.y],[q.x,q.y]],'#b38fad25',1);
+  }
+  // Walkway converges on the real exit, including center line and fixed steps.
+  const floor=radius*.7;
+  const runway=[view.project(-radius*.68,floor,near),view.project(radius*.68,floor,near),view.project(radius*.68,floor,far),view.project(-radius*.68,floor,far)];
+  ctx.beginPath();runway.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle='#332c4455';ctx.fill();
+  for(const x of [-radius*.68,radius*.68]){const p=view.project(x,floor,near),q=view.project(x,floor,far);line(ctx,[[p.x,p.y],[q.x,q.y]],'#e9bfcd70',1.5);}
+  for(let z=far;z>camera+150;z-=145){const p=view.project(-radius*.68,floor,z),q=view.project(radius*.68,floor,z);line(ctx,[[p.x,p.y],[q.x,q.y]],'#e7bfda18',Math.max(.5,p.k));}
+  // Earlier memories sit near the entrance, recent ones near the exit.
+  for(let i=chapters.length-1;i>=0;i--)drawWallMemory(view,i);
+  const relative=mobile?550+progress*95:850+progress*130;
+  const feet=view.project(0,floor,camera+relative);
+  const personHeight=(mobile?210:220)*feet.k;
+  const bob=(paused||reduced)?0:Math.sin(elapsed*9)*2;
+  const traveler=document.querySelector('.traveler');
+  traveler.style.left=`${feet.x}px`;traveler.style.top=`${feet.y-personHeight+bob}px`;traveler.style.width=`${personHeight*220/350}px`;traveler.style.height=`${personHeight}px`;traveler.style.bottom='auto';
+  traveler.dataset.distance=String(Math.round(progress*100));
+  ctx.save();ctx.globalAlpha=.35;ellipse(ctx,feet.x,feet.y+5,personHeight*.24,personHeight*.035,'#e7bad0');ctx.restore();
+  // Two glowing footprints follow the moving character, located in world space.
+  for(let i=0;i<7;i++){
+    const z=camera+relative-90-i*83;if(z<=camera+100)continue;
+    const p=view.project((i%2?1:-1)*12,floor+.5,z);
+    ctx.save();ctx.globalAlpha=(1-i/7)*.12;ellipse(ctx,p.x,p.y,4*p.k,9*p.k,'#e9bdcf');ctx.restore();
+  }
+  $('journey-distance').textContent=`${Math.round(progress*100)}%`;
   ctx.restore();
 }
+
 function drawAmbient(t){
   if(scene==='journey')return;
   for(let i=0;i<18;i++){const s=stars[i],x=s.x*width+Math.sin(t*.12+s.phase)*20,y=(s.y*height-(reduced?0:t*4))%height;ctx.save();ctx.globalAlpha=.08+Math.sin(t*.6+s.phase)*.04;ellipse(ctx,x,y<0?y+height:y,2+s.r*2,2+s.r*2,i%2?'#e8b4cf':'#e9ca9c');ctx.restore();}
