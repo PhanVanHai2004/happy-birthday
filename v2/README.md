@@ -35,3 +35,9 @@ Mã V2 đã được đưa vào thư mục v2 trong repository. GitHub Pages t�
 
 ## Cập nhật V2.1 — đường hầm tròn
 Hầm được dựng bằng phối cảnh 3D dạng ống tròn hữu hạn, có lối đi giữa hầm và cửa cuối hầm. Nhân vật nhìn từ phía sau, tiến dọc hầm. Sáu cảnh được gắn cố định lên hai thành hầm theo thứ tự năm, có phối cảnh và lần lượt đi qua khi camera theo nhân vật. Thanh hành trình hiện tiến độ từ lối vào đến cuối hầm.
+
+## Cập nhật V2.2 — cảm xúc và lễ hội
+- Nhân vật quay đầu trái/phải và ngẩng lên theo vị trí ký ức, có 6 biểu cảm và lời nghĩ tương ứng; mắt, miệng, lông mày thay đổi theo chặng.
+- Cánh cửa chỉ là điểm sáng nhỏ ở xa; hiện hình và lớn dần khi gần cuối hầm.
+- Pháo hoa nhiều tầng với các kiểu vòng tròn, chùm nở, tim và chùm vàng rủ; nhiều màu, vệt sáng, phạm vi rộng.
+- Pháo giấy bắn từ hai bên và tiếp tục rơi; hỗ trợ chế độ giảm chuyển động.
