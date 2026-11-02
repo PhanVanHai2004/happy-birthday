@@ -31,4 +31,4 @@ Bản V1 vẫn được lưu riêng ở ../hue-birthday-v1 và ../hue-birthday-v
 
 Để thay trang chủ bằng V2: tải index.html, styles.css, script.js và .nojekyll vào gốc repository, ghi đè các file cùng tên. Mã V1 cục bộ vẫn giữ nguyên.
 
-Trạng thái: V2 đã kiểm tra trên trình duyệt cục bộ; chưa triển khai lên GitHub. Không coi các link dự kiến là xác nhận đã xuất bản.
+Mã V2 đã được đưa vào thư mục v2 trong repository. GitHub Pages tự triển khai khi nhánh main thay đổi. Trạng thái triển khai cần được kiểm tra trên trang Actions hoặc bằng cách mở link V2.
