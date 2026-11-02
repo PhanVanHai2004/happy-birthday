@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9f5ed">
+  <meta name="description" content="Một chiếc sinh nhật thật xinh dành riêng cho Huệ. Mở quà, ước một điều và đón những niềm vui mới.">
+  <title>Gửi Huệ, một ngày thật xinh ♡</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23f9e4e8'/%3E%3Ctext x='32' y='47' font-size='48' text-anchor='middle' fill='%23ae526b'%3E♡%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div class="paper-grain" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="wordmark" href="#home">a little <span>birthday</span> <i>♡</i></a>
+    <div class="header-right"><span class="made-for">DÀNH RIÊNG CHO HUỆ</span><button id="sound-toggle" class="sound-toggle" aria-pressed="false" aria-label="Bật nhạc nhẹ"><span aria-hidden="true">♫</span><span id="sound-label">Bật nhạc</span></button></div>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="tiny-star">✦</span> SPECIAL DELIVERY · 05 NOVEMBER</div>
+        <h1 id="hero-title">Hôm nay,<br>thế giới có thêm<br>một chút <span class="pretty">dễ thương.<svg viewBox="0 0 400 25" aria-hidden="true"><path d="M4 16 Q175 -2 390 13 M30 24 Q190 9 345 20"/></svg></span></h1>
+        <p class="hero-description">Vì có một người tên <strong>Huệ</strong> đã đến.<br>Một góc nhỏ, một chiếc bánh và thật nhiều điều<br class="desktop-break"> tốt lành — tất cả đều dành cho cậu.</p>
+        <button id="open-gift" class="button primary">Mở món quà của cậu <span aria-hidden="true">↗</span></button>
+        <div class="tiny-note"><span aria-hidden="true">♡</span> Không cần lớn lao. Chỉ cần cậu thấy vui.</div>
+      </div>
+
+      <div class="hero-art" aria-label="Thiệp sinh nhật minh họa bánh kem dâu và những ngôi sao">
+        <div class="art-dot dot-one" aria-hidden="true"></div><div class="art-dot dot-two" aria-hidden="true"></div>
+        <span class="floating-doodle doodle-star" aria-hidden="true">✧</span><span class="floating-doodle doodle-heart" aria-hidden="true">♡</span>
+        <div class="date-badge"><span>THÁNG 11</span><strong>05</strong><span>YOUR SPECIAL DAY</span></div>
+        <div class="birthday-card">
+          <div class="card-topline"><span>A WISH JUST FOR YOU</span><span aria-hidden="true">✦</span></div>
+          <div class="card-heading">Happy<br><em>birthday,</em></div>
+          <svg class="cake-illustration" viewBox="0 0 420 310" role="img" aria-labelledby="cake-title">
+            <title id="cake-title">Chiếc bánh kem hồng với dâu tây và hai ngọn nến</title>
+            <defs><linearGradient id="cake-pink" x2="0" y2="1"><stop stop-color="#f1b5c4"/><stop offset="1" stop-color="#df8da4"/></linearGradient><linearGradient id="icing" x2="0" y2="1"><stop stop-color="#fff9ed"/><stop offset="1" stop-color="#f9e9d7"/></linearGradient></defs>
+            <ellipse cx="214" cy="275" rx="157" ry="20" fill="#d8bca6" opacity=".15"/>
+            <ellipse cx="210" cy="263" rx="154" ry="22" fill="#f4eee2" stroke="#ddcbb5" stroke-width="2"/>
+            <ellipse cx="210" cy="258" rx="134" ry="15" fill="#e5d8c7"/>
+            <path d="M96 150v87c0 37 229 37 229 0v-87z" fill="url(#cake-pink)" stroke="#cc7c96" stroke-width="2"/>
+            <path d="M98 196c68 26 157 26 225 0M98 221c68 26 157 26 225 0" fill="none" stroke="#c57690" stroke-width="2" opacity=".38"/>
+            <path d="M96 150v31c0 15 17 18 21 2l3-8c2-7 14-4 14 4v18c0 19 21 19 21 0v-12c0-9 15-9 16 1l3 22c3 18 23 17 25-2l2-14c2-11 18-8 18 1v5c0 18 20 17 21 2l2-18c1-10 16-9 17 0v6c0 16 21 17 22 0l1-16c2-8 14-8 15 1 3 17 27 17 28-1v-22z" fill="url(#icing)" stroke="#ead6c1" stroke-width="1.5"/>
+            <ellipse cx="210" cy="149" rx="115" ry="39" fill="#fff9ee" stroke="#ead6c1" stroke-width="2"/>
+            <ellipse cx="210" cy="148" rx="95" ry="26" fill="none" stroke="#f0dfce" stroke-dasharray="1 11" stroke-width="6" stroke-linecap="round"/>
+            <g class="candle"><path d="M180 137V77h12v60" fill="#b8c0a0" stroke="#7d9273" stroke-width="1.5"/><path d="m181 92 10-6m-10 22 10-6m-10 22 10-6" stroke="#f8f0de" stroke-width="4"/><path d="M186 77v-8" stroke="#6b634f" stroke-width="2"/><path class="flame" d="M186 45c-19 23-8 31 0 24 10 4 15-10 0-24" fill="#eab56c"/><path class="flame flame-inner" d="M186 54c-9 12-4 17 0 14 5 1 7-5 0-14" fill="#fff2c0"/></g>
+            <g class="candle"><path d="M230 137V77h12v60" fill="#e9adc1" stroke="#bc7d98" stroke-width="1.5"/><path d="m231 92 10-6m-10 22 10-6m-10 22 10-6" stroke="#fff1e1" stroke-width="4"/><path d="M236 77v-8" stroke="#6b634f" stroke-width="2"/><path class="flame flame-two" d="M236 45c-19 23-8 31 0 24 10 4 15-10 0-24" fill="#eab56c"/><path class="flame flame-inner flame-two" d="M236 54c-9 12-4 17 0 14 5 1 7-5 0-14" fill="#fff2c0"/></g>
+            <g transform="translate(139 132) rotate(-16)"><path d="M-13-6c-7 8 2 24 13 30C11 18 20 2 13-6 7-14-7-14-13-6" fill="#ce6278" stroke="#b65167" stroke-width="1.5"/><path d="m0-6-12-7 8 1 4-8 4 8 8-1z" fill="#8d9c70"/><path d="m-6 3 1 3m10-3-1 3m-4 3 1 3m-4 1 1 3m8-1-1 3" stroke="#f9e5bb" stroke-width="2" stroke-linecap="round"/></g>
+            <g transform="translate(280 139) rotate(19)"><path d="M-13-6c-7 8 2 24 13 30C11 18 20 2 13-6 7-14-7-14-13-6" fill="#ce6278" stroke="#b65167" stroke-width="1.5"/><path d="m0-6-12-7 8 1 4-8 4 8 8-1z" fill="#8d9c70"/><path d="m-6 3 1 3m10-3-1 3m-4 3 1 3m-4 1 1 3m8-1-1 3" stroke="#f9e5bb" stroke-width="2" stroke-linecap="round"/></g>
+            <path d="M113 232q10 15 20 0 10 15 20 0 10 15 20 0 10 15 20 0 10 15 20 0 10 15 20 0 10 15 20 0 10 15 20 0 10 15 20 0 10 15 20 0" fill="none" stroke="#fff1e5" stroke-width="6" stroke-linecap="round"/>
+            <path d="M70 100v15m-7-7h14m278 88v14m-7-7h14" stroke="#b79765" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div class="card-name">Huệ<span>♡</span></div>
+          <div class="card-bottomline"><span>05.11.2004</span><span>WITH ALL THE LITTLE JOYS</span></div>
+        </div>
+        <div class="age-sticker"><span>HELLO,</span><strong>22</strong><span>THẬT RỰC RỠ NHÉ!</span></div>
+        <div class="art-caption">a little cake, a lot of love.</div>
+      </div>
+    </section>
+
+    <div class="ribbon" aria-hidden="true"><div>một tuổi mới thật xinh <span>✦</span> nhiều niềm vui hơn một chút <span>✦</span> luôn là chính cậu <span>✦</span> happy birthday, Huệ <span>✦</span></div></div>
+
+    <section class="birthday-moments" aria-labelledby="moments-title">
+      <div class="section-intro"><div><div class="eyebrow">NHỮNG ĐIỀU NHỎ XINH</div><h2 id="moments-title">Một ngày của cậu.<br><em>Thật nhiều điều để yêu.</em></h2></div><p>Không cần vội. Cứ mở từng chút một,<br>như cách mình tận hưởng một ngày đẹp trời.</p></div>
+      <div class="moment-grid">
+        <button class="moment letter-moment" id="open-letter"><span class="moment-number">01 / LỜI NHẮN</span><span class="envelope" aria-hidden="true"><span class="envelope-flap"></span><span class="envelope-heart">♥</span></span><span class="moment-title">Có một lá thư cho cậu</span><span class="moment-description">Một vài lời thương, gói ghém thật khẽ.</span><span class="moment-link">Mở thư <span>↗</span></span></button>
+        <button class="moment wish-moment" id="open-wish"><span class="moment-number">02 / ĐIỀU ƯỚC</span><span class="wish-illustration" aria-hidden="true"><span class="wish-star">✧</span><span class="wish-tail"></span><i>✦</i></span><span class="moment-title">Nhắm mắt, ước một điều</span><span class="moment-description">Có những điều đẹp đang đợi cậu phía trước.</span><span class="moment-link">Ước & thổi nến <span>↗</span></span></button>
+        <button class="moment gift-moment" id="open-lucky"><span class="moment-number">03 / MỘT CHÚT MAY MẮN</span><span class="small-gift" aria-hidden="true"><span class="gift-bow">୨୧</span><span class="gift-box"></span></span><span class="moment-title">Bốc một niềm vui nho nhỏ</span><span class="moment-description">Một lời nhắn ngẫu nhiên dành riêng cho hôm nay.</span><span class="moment-link">Nhận niềm vui <span>↗</span></span></button>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title"><div class="closing-flower" aria-hidden="true">✽</div><div class="eyebrow">05 NOVEMBER · MỘT NGÀY RẤT ĐẶC BIỆT</div><h2 id="closing-title">Chúc Huệ một tuổi mới<br><em>dịu dàng với chính mình.</em></h2><p>Mong cậu có đủ can đảm để theo đuổi điều mình thích,<br>đủ bình yên để yêu những ngày bình thường,<br>và đủ yêu thương để luôn thấy mình được trân trọng.</p><div class="countdown" id="countdown" aria-label="Thời gian đến sinh nhật"><span class="countdown-label">ĐẾM NGƯỢC ĐẾN NGÀY CỦA CẬU</span><div class="countdown-numbers" id="countdown-numbers"></div></div><button id="celebrate-again" class="text-button">Thêm một chút pháo giấy nhé <span>✧</span></button></section>
+  </main>
+  <footer><a class="wordmark" href="#home">a little <span>birthday</span> <i>♡</i></a><span>Một góc nhỏ dành riêng cho Huệ.</span><a href="#home" class="back-top">Về đầu trang ↑</a></footer>
+
+  <dialog id="birthday-dialog" aria-labelledby="dialog-title"><button class="close-dialog" aria-label="Đóng cửa sổ">×</button><div id="dialog-content"></div></dialog>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
