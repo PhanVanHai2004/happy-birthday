@@ -1,6 +1,6 @@
-# Gửi Huệ, một ngày thật xinh ♡
 
-Website sinh nhật dành cho Huệ, sinh ngày 05/11/2004. Phiên bản này dành cho sinh nhật 22 tuổi vào ngày 05/11/2026.
+
+Website sinh nhật
 
 ## Chạy thử
 
@@ -13,7 +13,6 @@ Mở `index.html` bằng trình duyệt, hoặc phục vụ thư mục này bằ
 - Nến tắt và pháo giấy. Có thể ước thêm hoặc bắn pháo giấy lại.
 - Những lời nhắn ngẫu nhiên, không lặp liên tiếp.
 - Nhạc nhẹ tự tạo bằng Web Audio, chỉ bật khi người xem chọn.
-- Đếm ngược theo múi giờ Việt Nam tới 00:00 ngày 05/11/2026.
 - Responsive, hỗ trợ bàn phím và tùy chọn giảm chuyển động của thiết bị.
 
 Điều ước không được gửi đi hoặc lưu. Không có analytics, biểu mẫu gửi dữ liệu hay tài khoản đăng nhập. Google Fonts được dùng cho kiểu chữ; khi không tải được sẽ dùng font dự phòng.
