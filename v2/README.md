@@ -1,6 +1,6 @@
-# Huệ · Chuyến đi đến tuổi mới — V2
 
-Website frontend với một hành trình sinh nhật theo cảnh, dành cho Huệ (05/11/2004), sinh nhật 22 tuổi ngày 05/11/2026.
+
+Website frontend với một hành trình sinh nhật theo cảnh
 
 ## Xem trên máy
 Giải nén toàn bộ thư mục rồi mở index.html bằng Chrome hoặc Edge. Giữ styles.css và script.js cùng thư mục với index.html. Không cần cài thư viện hay bước build.
@@ -24,14 +24,6 @@ Các cảnh là hình ảnh tượng trưng; không khẳng định sự kiện 
 
 Kiểu chữ dùng Google Fonts với font dự phòng nếu không có mạng. Nút Giảm chuyển động và thiết lập tương ứng của thiết bị được hỗ trợ.
 
-## Đăng lên GitHub Pages
-Bản V1 vẫn được lưu riêng ở ../hue-birthday-v1 và ../hue-birthday-v1.zip.
-
-Để giữ V1 online đồng thời với V2: tải các file của bản này vào thư mục v2 trong repository PhanVanHai2004/happy-birthday. Cấu hình Pages giữ nguyên nhánh main, /(root). Link dự kiến sau khi deploy thành công: https://phanvanhai2004.github.io/happy-birthday/v2/
-
-Để thay trang chủ bằng V2: tải index.html, styles.css, script.js và .nojekyll vào gốc repository, ghi đè các file cùng tên. Mã V1 cục bộ vẫn giữ nguyên.
-
-Mã V2 đã được đưa vào thư mục v2 trong repository. GitHub Pages tự triển khai khi nhánh main thay đổi. Trạng thái triển khai cần được kiểm tra trên trang Actions hoặc bằng cách mở link V2.
 
 ## Cập nhật V2.1 — đường hầm tròn
 Hầm được dựng bằng phối cảnh 3D dạng ống tròn hữu hạn, có lối đi giữa hầm và cửa cuối hầm. Nhân vật nhìn từ phía sau, tiến dọc hầm. Sáu cảnh được gắn cố định lên hai thành hầm theo thứ tự năm, có phối cảnh và lần lượt đi qua khi camera theo nhân vật. Thanh hành trình hiện tiến độ từ lối vào đến cuối hầm.
